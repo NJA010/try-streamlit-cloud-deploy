@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "dsguild-streamlit-production-example"
+version = "0.1.0"
+description = "Minimal example of a production streamlit dashboard"
+authors = ["Laurens Koppenol <lt.koppenol@portofrotterdam.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+streamlit = "~1.23.1"
+altair = "~4.2"
+databricks = "0.2"
+databricks-sql-connector = "3.1.0"
+azure-identity = "1.15.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "0.2.2"
+black = "24.2.0"
+pytest = "8.0.1"
+
+[tool.poetry.group.deploy.dependencies]
+"rsconnect-python" = "1.22.0"
+
+[tool.pytest.ini_options]
+addopts = "-s -p no:warnings"
+log_cli = 1
+log_cli_level = "INFO"
+log_cli_format = "[pytest][%(asctime)s][%(levelname)s][%(module)s][%(funcName)s] %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+log_level = "INFO"
+
+[tool.ruff]
+line-length = 120
+output-format = "github"
+target-version = "py39"
+fix = true
+
+[tool.ruff.lint]
+select = ["C90","E","F","I","N","PD","PL","S"]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101", # asserts allowed in tests
+]
