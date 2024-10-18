@@ -9,7 +9,7 @@ from tables import generate_table
 
 APP_NAME = "Streamlit Table Production Example"
 logger = logging.getLogger(__name__)
-
+logger.setLevel(logging.INFO)
 
 def cursor_to_df(cursor: databricks.sql.client.Cursor) -> pd.DataFrame:
     """
@@ -60,7 +60,7 @@ def display_databricks_sql_connection_example():
 
     # Get either personal access token or managed identity token
     token = TokenRetriever().get_token()
-
+    logger.info("token retrieved")
     # Create Databricks sql connector
     connector = DatabricksSQLConnector(token)
     try:
