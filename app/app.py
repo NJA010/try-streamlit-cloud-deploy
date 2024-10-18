@@ -8,8 +8,9 @@ from components.token import TokenRetriever
 from tables import generate_table
 
 APP_NAME = "Streamlit Table Production Example"
+logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
 def cursor_to_df(cursor: databricks.sql.client.Cursor) -> pd.DataFrame:
     """
